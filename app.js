@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var uploadImageRouter = require('./routes/upload_image');
 var uploadDetailRouter = require('./routes/upload_detail');
+var productRouter = require('./routes/product');
 
 
 var app = express();
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/products', productRouter);
 app.use('/upload/image', uploadImageRouter);
 app.use('/upload/detail', uploadDetailRouter);
 
