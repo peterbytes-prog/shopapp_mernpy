@@ -28,12 +28,13 @@ const ProductSchema = new Schema(
   }
 );
 
-var Product = mongoose.model('Product', ProductSchema, 'Shop');
+var Product = mongoose.model('Product', ProductSchema);
+
 exports.Product = Product;
 
 const ProductDealSchema = new Schema({
   product:{
-    type: Schema.Types.ObjectsId,
+    type: mongoose.Schema.ObjectId,
     ref: "Product"
   },
   price:{
@@ -46,5 +47,5 @@ const ProductDealSchema = new Schema({
 }
 );
 
-var ProductDeal = mongoose.model('ProductDeal', ProductDealSchema, 'Shop');
+var ProductDeal = mongoose.model('ProductDeal', ProductDealSchema);
 exports.ProductDeal = ProductDeal;
