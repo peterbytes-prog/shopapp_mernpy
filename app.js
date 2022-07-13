@@ -5,9 +5,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var db = require('./db/connect'); //connect to database
-
+const fileUpload = require('express-fileUpload');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var uploadImageRouter = require('./routes/upload_image');
 
 var app = express();
 
@@ -19,12 +20,14 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(fileUpload());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/upload/image', uploadImageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

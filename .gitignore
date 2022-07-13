@@ -3,6 +3,8 @@
 */*/.DS_STORE
 db/data
 
+public/images/products
+
 # Created by https://www.toptal.com/developers/gitignore/api/node,react
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,react
 
