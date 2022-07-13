@@ -22,6 +22,10 @@ const ProductSchema = new Schema(
     price:{
       type: Currency,
       required: [true, "Product price is required"],
+    },
+    unit: {
+      type: String,
+      default:'ea'
     }
   },{
     timestamps:true
@@ -37,6 +41,7 @@ const ProductDealSchema = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: "Product"
   },
+  detail: String,
   price:{
     type: Currency,
     required: [true, "Product Deal price is required"],
