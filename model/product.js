@@ -15,6 +15,10 @@ const ProductSchema = new Schema(
       type: String,
       required: [true, "Product Description is required"],
     },
+    department:{
+      type:String,
+      enum: ['vegetables', 'fruits']
+    },
     name: {
       type: String,
       required: [true, "Product name is required"],
