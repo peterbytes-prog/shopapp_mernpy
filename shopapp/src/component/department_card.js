@@ -10,9 +10,12 @@ import {
 
 export default function DepartmentCard(props){
   return (
-    <div className='col-sm-12 col-md-6 col-lg-4 p-0 my-2'>
+    <div className='col-xs-12 col-md-6 col-lg-4 p-0 my-2'>
       <Card className='mx-md-2'>
+        <div>
         <CardImg width='100%' src={props.src} />
+        </div>
+
         <CardImgOverlay>
           <div className="cardoverlay-contents">
             <CardText>

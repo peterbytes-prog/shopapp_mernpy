@@ -38,6 +38,37 @@
   border-width: medium;
 }
 
+.header-cards-container{
+  display: inline-flex;
+  max-height: 10rem;
+  overflow-y: hidden;
+}
+.product-card-image-wrapper{
+  max-height: 35vmin;
+  overflow: hidden;
+}
+.product-cards p{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.sale-original-price{
+  text-decoration: line-through;
+}
+.header-cards-container .card{
+}
+.header-cards-container img{
+  min-width: 15rem !important;
+}
+.header-cards-container .cardoverlay-contents{
+  background:rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0%;
+  text-align: center;
+  margin-top: 1em;
+}
+
 .navbar-nav a{
   color: white !important;
   margin: 0 20px !important;
