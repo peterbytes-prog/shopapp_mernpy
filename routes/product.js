@@ -7,7 +7,19 @@ const path = require('path');
 router = express.Router();
 router.route('/')
   .get((req, res, next) => {
-    return Product.find({}).populate('images').then((products) =>{
+
+    const agg = [
+      {
+        '$lookup': {
+          'from': 'productdeals',
+          'localField': '_id',
+          'foreignField': 'product',
+          'as': 'promo'
+        }
+      }
+    ];
+
+    return Product.aggregate(agg).then((products) =>{
       res.status(200);
       return res.send(products)
     }, (err)=>{
