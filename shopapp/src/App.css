@@ -1,3 +1,51 @@
+*{
+  font-family: 'Source Serif Pro' !important;
+}
+.main-jumbotron{
+  padding: 0px !important;
+  margin: 0px !important;
+  background-image: url('../public/shopJumbotronBg.jpg');
+  height: 85vh;
+  background-size: cover;
+  background-position: center;
+  color: white !important;
+  border-radius: 0px !important;
+}
+.main-jumbotron h1{
+  margin: 30px 0;
+  font-size: 30px;
+  line-height: 1.5;
+}
+.intro{
+  padding-top: 130px!important;
+  background: rgba(0, 0, 0, 0.5);
+  min-height: 100%;
+}
+
+.navbar-nav a{
+  color: white !important;
+  margin: 0 20px !important;
+  margin-top: 20px !important;
+}
+.navbar-toggler {
+  color: white !important;
+  border: none !important;
+}
+.nav-link:hover{
+  font-weight: 600 !important;
+  border-bottom: 1px solid white !important;
+}
+.logo img, .logo{
+  max-width: 3rem!important;
+  padding: 0!important;
+  margin: 0!important;
+}
+#header .btn{
+  margin-top: 20px !important;
+  padding: 6px 26px !important;
+  font-size: 16px !important;
+}
+
 .App {
   text-align: center;
 }
@@ -13,6 +61,19 @@
   }
 }
 
+@media only screen and (max-width: 1000px) {
+  .navbar{
+    background: rgba(0, 20, 0, 0.5) !important;
+    text-align: left;
+  }
+  .main-jumbotron h1{
+    font-size: 25px;
+  }
+  .intro{
+    padding-top: 100px!important;
+  }
+
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
