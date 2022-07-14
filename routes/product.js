@@ -41,42 +41,4 @@ router.route('/:productId')
   .delete((req, res, next) => {
     return defaultResponses.error405(req,res,next);
 });
-
-router.route('/deals')
-  .get((req, res, next) => {
-    return ProductDeal.find({}).then((deals) =>{
-      res.status(200);
-      return res.send(deals)
-    }, (err)=>{
-      return next(err)
-    })
-  })
-  .post((req, res, next) => {
-    return defaultResponses.error405(req,res,next);
-  })
-  .put((req, res, next) => {
-    return defaultResponses.error405(req,res,next);
-  })
-  .delete((req, res, next) => {
-    return defaultResponses.error405(req,res,next);
-});
-router.route('/deals/:dealId')
-  .get((req, res, next) => {
-    return ProductDeal.findById(req.params.dealId).then((deal) =>{
-      res.status(200);
-      return res.send(deal)
-    }, (err)=>{
-      return next(err)
-    })
-  })
-  .post((req, res, next) => {
-    return defaultResponses.error405(req,res,next);
-  })
-  .put((req, res, next) => {
-    return defaultResponses.error405(req,res,next);
-  })
-  .delete((req, res, next) => {
-    return defaultResponses.error405(req,res,next);
-});
-
 module.exports = router;

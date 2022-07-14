@@ -7,7 +7,12 @@ const path = require('path');
 router = express.Router();
 router.route('/')
   .get((req, res, next) => {
-    return defaultResponses.error405(req,res,next);
+    return ProductDeal.find({}).populate('product').then((deals) =>{
+      res.status(200);
+      return res.send(deals)
+    }, (err)=>{
+      return next(err)
+    })
   })
   .post((req, res, next) => {
     Product.findById(req.body.productId)
@@ -23,7 +28,26 @@ router.route('/')
     },(err)=>{
         return next(err);
     });
-    
+
+  })
+  .put((req, res, next) => {
+    return defaultResponses.error405(req,res,next);
+  })
+  .delete((req, res, next) => {
+    return defaultResponses.error405(req,res,next);
+});
+
+router.route('/:dealId')
+  .get((req, res, next) => {
+    return ProductDeal.findById(req.params.dealId).then((deal) =>{
+      res.status(200);
+      return res.send(deal)
+    }, (err)=>{
+      return next(err)
+    })
+  })
+  .post((req, res, next) => {
+    return defaultResponses.error405(req,res,next);
   })
   .put((req, res, next) => {
     return defaultResponses.error405(req,res,next);
