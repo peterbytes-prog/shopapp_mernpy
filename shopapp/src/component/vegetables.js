@@ -5,7 +5,6 @@ import DepartmentProductList from './department_product_list';
 
 export default class VegetablesPage extends Component {
   constructor(props) {
-    console.log(props)
     super(props);
   }
   render(){

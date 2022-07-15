@@ -4,7 +4,7 @@
 .main-jumbotron{
   padding: 0px !important;
   margin: 0px !important;
-  background-image: url('../public/shopJumbotronBg.jpg');
+  background-image: url('./public/shopJumbotronBg.jpg');
   height: 85vh;
   background-size: cover;
   background-position: center;

@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import DepartmentCard from './department_card';
 import ShopJumbotron from './shop_jumbotron';
-import PromoCarousel from './carousel';
+import MainCarousel from './carousel';
 
 
 
@@ -26,7 +26,13 @@ export default class Home extends Component {
           <DropdownItem divider />
           <br/>
           <Container fluid>
-            <PromoCarousel deals={this.props.deals}/>
+            <MainCarousel items={this.props.deals.map((deal)=>({
+              caption:deal.detail,
+              detail:"",
+              image:deal.product.images[0].path,
+              src:deal.product.images[0].path
+
+            }))}/>
           </Container>
 
           <br/>

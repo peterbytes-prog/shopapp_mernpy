@@ -8,12 +8,11 @@ import {
 } from 'reactstrap';
 
 
-export default class PromoCarousel extends Component {
+export default class MainCarousel extends Component {
   constructor(props){
     super(props);
     this.state = {
-      activeIndex: 0,
-      items : props.deals || []
+      activeIndex: 0
     }
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -31,13 +30,13 @@ export default class PromoCarousel extends Component {
 
   next() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === this.state.items.length - 1 ? 0 : this.state.activeIndex + 1;
+    const nextIndex = this.state.activeIndex === this.props.items.length - 1 ? 0 : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   }
 
   previous() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? this.state.items.length - 1 : this.state.activeIndex - 1;
+    const nextIndex = this.state.activeIndex === 0 ? this.props.items.length - 1 : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
 
@@ -46,9 +45,7 @@ export default class PromoCarousel extends Component {
     this.setState({ activeIndex: newIndex });
   }
   render(){
-
-
-    const items = this.state.items;
+    const items = this.props.items;
     const activeIndex = this.state.activeIndex;
 
     const slides = items.map((item) => {
@@ -56,9 +53,9 @@ export default class PromoCarousel extends Component {
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item.product.images[0].path}
+          key={item.image}
         >
-          <img src={item.product.images[0].path} alt={item.detail} className='carousel-images'/>
+          <img src={item.image} alt={item.detail} className='carousel-images'/>
           <CarouselCaption captionText={item.detail} captionHeader={item.caption} className="carousel-caption"/>
         </CarouselItem>
       );

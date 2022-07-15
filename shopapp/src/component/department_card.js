@@ -14,7 +14,7 @@ export default function DepartmentCard(props){
     <div className='col-xs-12 col-md-6 col-lg-4 p-0 my-2'>
       <Card className='mx-md-2'>
         <div>
-        <CardImg width='100%' src={props.src} />
+        <CardImg width='100%' src={require(`./../public/${props.src}`)} />
         </div>
 
         <CardImgOverlay>

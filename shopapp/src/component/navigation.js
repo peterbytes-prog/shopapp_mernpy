@@ -36,7 +36,7 @@ export default class Navigation extends React.Component {
         <div>
           <Navbar expand="md" className='fixed-top' fixed='top'>
             <NavbarBrand href="/" className="mr-auto logo">
-              <img src='logo192.png'/>
+              <img src={require('../public/logo192.png')}/>
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle}>
               <FontAwesomeIcon icon={faBars} />

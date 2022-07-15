@@ -5,9 +5,11 @@ import Home from './component/home';
 import PromoPage from './component/promos';
 import VegetablesPage from './component/vegetables';
 import FruitsPage from './component/fruits';
+import DetailPage from './component/detail';
 import Footer from './component/footer';
+
 import './App.css';
-import { Router, BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { useParams, Router, BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 
 class App extends Component {
   constructor(props){
@@ -201,17 +203,23 @@ class App extends Component {
             ]
     }
   }
+
   render(){
-    console.log(this.state.products.filter((product)=>product.department==='vegetables'))
+    let RouteDetail = (props) => {
+      let params = useParams();
+      return <DetailPage productId={params.productId} products={this.state.products}/>
+    }
     return (
       <BrowserRouter>
         <div className="App">
           <Navigation />
           <Routes>
             <Route path='/' element={<Home deals={this.state.deals}/>} />
-            <Route path='/promos' element={<PromoPage products={this.state.products.filter((product)=>product.promo.length>0)}/>} />
-            <Route path='/vegetables' element={<VegetablesPage products={this.state.products.filter((product)=>product.department==='vegetables')}/>} />
-            <Route path='/fruits' element={<FruitsPage products={this.state.products.filter((product)=>product.department==='fruits')}/>} />
+            <Route path='/products/:productId' element={<RouteDetail />} />
+
+            <Route exact path='/promos' element={<PromoPage products={this.state.products.filter((product)=>product.promo.length>0)}/>} />
+            <Route exact path='/vegetables' element={<VegetablesPage products={this.state.products.filter((product)=>product.department==='vegetables')}/>} />
+            <Route exact path='/fruits' element={<FruitsPage products={this.state.products.filter((product)=>product.department==='fruits')}/>} />
           </Routes>
           <Footer />
         </div>

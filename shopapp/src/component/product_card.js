@@ -16,7 +16,7 @@ const ProductCard = ({product}) => {
         </div>
         <CardBody>
 
-          <Link to={`products/${product._id}`} className='card-title'>{product.name}</Link>
+          <Link to={`/products/${product._id}`} className='card-title'>{product.name}</Link>
           <CardSubtitle>$ {deal_price} {(price/100).toFixed(2)}/{product.unit}</CardSubtitle>
           <CardText>{product.description}</CardText>
           <Button className='btn-success'><FontAwesomeIcon icon={faPlus}/> Cart</Button>
