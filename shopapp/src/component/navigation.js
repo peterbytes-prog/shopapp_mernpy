@@ -6,7 +6,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -14,7 +13,7 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 export default class Navigation extends React.Component {
@@ -45,13 +44,13 @@ export default class Navigation extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="mx-auto" navbar>
                 <NavItem>
-                  <Link className='nav-link' to='/promos'>Deals</Link>
+                  <NavLink className='nav-link' to='/promos'>Deals</NavLink>
                 </NavItem>
                 <NavItem>
-                  <Link className='nav-link' to='/promos'>Vegetable</Link>
+                  <NavLink className='nav-link' to='/vegetables'>Vegetable</NavLink>
                 </NavItem>
                 <NavItem>
-                  <Link className='nav-link' to='/promos'>Fruit</Link>
+                  <NavLink className='nav-link' to='/fruits'>Fruit</NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>

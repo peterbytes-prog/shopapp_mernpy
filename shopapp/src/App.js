@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Navigation from './component/navigation';
 import Home from './component/home';
 import PromoPage from './component/promos';
+import VegetablesPage from './component/vegetables';
+import FruitsPage from './component/fruits';
 import Footer from './component/footer';
 import './App.css';
 import { Router, BrowserRouter, Route, Routes, Link } from 'react-router-dom';
@@ -88,6 +90,8 @@ class App extends Component {
                     "createdAt": "2022-07-13T09:17:56.075Z",
                     "updatedAt": "2022-07-13T09:17:56.090Z",
                     "__v": 0,
+                    "department": "vegetables",
+                    "unit": "lb",
                     "promo": []
                 },
                 {
@@ -113,6 +117,7 @@ class App extends Component {
                     "createdAt": "2022-07-13T09:35:01.970Z",
                     "updatedAt": "2022-07-13T09:35:01.990Z",
                     "__v": 0,
+                    "department": "fruits",
                     "promo": [
                         {
                             "_id": "62ce9b568c6c7df2b24e6822",
@@ -140,6 +145,7 @@ class App extends Component {
                     "createdAt": "2022-07-13T09:39:01.759Z",
                     "updatedAt": "2022-07-13T09:39:01.763Z",
                     "__v": 0,
+                    "department": "vegetables",
                     "promo": []
                 },
                 {
@@ -157,6 +163,7 @@ class App extends Component {
                     "createdAt": "2022-07-13T09:40:59.195Z",
                     "updatedAt": "2022-07-13T09:40:59.199Z",
                     "__v": 0,
+                    "department": "fruits",
                     "promo": []
                 },
                 {
@@ -178,6 +185,7 @@ class App extends Component {
                     "createdAt": "2022-07-13T09:43:52.734Z",
                     "updatedAt": "2022-07-13T09:43:52.737Z",
                     "__v": 0,
+                    "department": "vegetables",
                     "promo": [
                         {
                             "_id": "62ce9ab78c6c7df2b24e681f",
@@ -194,6 +202,7 @@ class App extends Component {
     }
   }
   render(){
+    console.log(this.state.products.filter((product)=>product.department==='vegetables'))
     return (
       <BrowserRouter>
         <div className="App">
@@ -201,6 +210,8 @@ class App extends Component {
           <Routes>
             <Route path='/' element={<Home deals={this.state.deals}/>} />
             <Route path='/promos' element={<PromoPage products={this.state.products.filter((product)=>product.promo.length>0)}/>} />
+            <Route path='/vegetables' element={<VegetablesPage products={this.state.products.filter((product)=>product.department==='vegetables')}/>} />
+            <Route path='/fruits' element={<FruitsPage products={this.state.products.filter((product)=>product.department==='fruits')}/>} />
           </Routes>
           <Footer />
         </div>

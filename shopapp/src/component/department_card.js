@@ -5,6 +5,7 @@ import {
   CardImgOverlay,
   CardText
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 
@@ -22,9 +23,9 @@ export default function DepartmentCard(props){
               {props.text}
             </CardText>
             <div className="text-left">
-              <button className='btn btn-outline-success text-light px-5'>
+              <Link to={`/${props.title.toLowerCase()}`} className='btn btn-outline-success text-light px-5'>
                 {props.title}
-              </button>
+              </Link>
             </div>
           </div>
         </CardImgOverlay>

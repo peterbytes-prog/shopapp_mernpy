@@ -18,7 +18,7 @@ export default function DepartmentHeader(){
         <div className="p-0 header-cards-container">
           <DepartmentCard src='fruits.jpg' title='Fruits' text='Our Fruits Are More Than Just Another Refreshment, They Are Delicacies!'/>
           <DepartmentCard src='vegetables.jpg' title='Vegetables' text='Healthiest Vegetables You Can Eat, According to a Nutritionist'/>
-          <DepartmentCard src='sales.jpg' title='Sales' text='With All These Sales, You Might Accidentally Over Ordered. Shop Carefully!'/>
+          <DepartmentCard src='sales.jpg' title='Promos' text='With All These Sales, You Might Accidentally Over Ordered. Shop Carefully!'/>
         </div>
       </Container>
     </div>

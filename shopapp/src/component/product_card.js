@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,7 +15,8 @@ const ProductCard = ({product}) => {
           <CardImg top width="100%" src={product.images[0].path} alt="Card image cap" />
         </div>
         <CardBody>
-          <CardTitle>{product.name}</CardTitle>
+
+          <Link to={`products/${product._id}`} className='card-title'>{product.name}</Link>
           <CardSubtitle>$ {deal_price} {(price/100).toFixed(2)}/{product.unit}</CardSubtitle>
           <CardText>{product.description}</CardText>
           <Button className='btn-success'><FontAwesomeIcon icon={faPlus}/> Cart</Button>

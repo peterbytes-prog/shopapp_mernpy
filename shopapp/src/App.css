@@ -74,6 +74,10 @@
   margin: 0 20px !important;
   margin-top: 20px !important;
 }
+.navbar-nav a.active{
+  color: lightgrey !important;
+  font-weight: bolder;
+}
 .navbar-toggler {
   color: white !important;
   border: none !important;
