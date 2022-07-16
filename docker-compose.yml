@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  nodeapp:
+    build:
+      context: ./nodeapp
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./nodeapp:/app
+    links:
+      - mongo
+  reactapp:
+    build:
+      context: ./shopapp
+    ports:
+      - "3000:3000"
+    links:
+      - nodeapp
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
