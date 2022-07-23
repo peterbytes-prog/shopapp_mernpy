@@ -4,6 +4,9 @@
 db/data
 ./data
 data
+*/app_venv
+*/email_auth.json
+
 
 public/images/products
 
