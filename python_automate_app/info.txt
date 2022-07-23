@@ -1,0 +1,13 @@
+These app extend the online store application, it a software develop that will update the catalog information with data provided by suppliers. When each supplier has new products for the store, they provide an image and a description of each product.
+
+Given a bunch of images and descriptions of each of the new products, the program:
+
+Upload the new products to the online store. Images and descriptions uploaded separately, using two different web endpoints.
+
+Send a report back to the supplier, letting them know what you imported.
+
+Since this process is key to business's success, there is a need to make sure that it keeps running! So, the program also:
+
+Run a script on the web server to monitor system health.
+
+Send an email with an alert if the server is ever unhealthy.
