@@ -2,6 +2,9 @@ import os, pathlib, csv
 from process_images import process
 
 
+def isPromo(data):
+    return float(data.get('Price')) < float(data.get('Prev Price')) #is promo if prev price is higher than current price
+
 def parseCsv(fl):
     csv_dict_lst = [] #will store csv data summary in dictionary
     #try to handle all related exceptions
@@ -13,9 +16,17 @@ def parseCsv(fl):
                 for key in csv_dict_lst[ind]:
                     if key.lower().startswith('image') and key.lower().startswith('image')  and csv_dict_lst[ind][key]:
                         img_path = pathlib.Path(fl.parent)/pathlib.Path(csv_dict_lst[ind][key]) #contruct full image path
-                        img_path = process(img_path).path #new path of the process image
+                        img_path = process(img_path) #new path of the process image
                         images.append(img_path)
                 csv_dict_lst[ind]['images'] = images #store product images
+                if isPromo(csv_dict_lst[ind]):
+                    csv_dict_lst[ind]['deal'] = {
+                        'detail':csv_dict_lst[ind].get('Promo', "Our Seasonal Promotion!"),
+                        'price': csv_dict_lst[ind]['Price']
+                    } # for deal request see request promo api body
+                    csv_dict_lst[ind]['Price'] = csv_dict_lst[ind].get('Prev Price') # set product price as price
+
+
     except Exception as err:
         raise err #any error to be handle
     return csv_dict_lst
