@@ -1,6 +1,11 @@
 import email, os, secrets
 from pathlib import Path
 import getpass, imaplib, json
+import pymongo
+from db import connect, models
+
+db_collection = connect()['inventories']
+
 
 creds = {'email':"", "password":""}
 with open('email_auth.json', 'r') as auth:
@@ -22,12 +27,23 @@ def searchInventory(subject='Inventory'):
         try:
             status, data = M.fetch(num, '(RFC822)')
             for res in data:
+                model_data = {}
                 ref_summary = {}
                 if isinstance(res, tuple):
                     msg = email.message_from_bytes(res[1])
                     ref_summary['From'] = msg["From"]
                     ref_summary['To'] = msg["To"]
                     ref_summary['Subject'] = msg["Subject"]
+                    ref_summary['Date'] = msg["Date"]
+
+                    model_data['from'] = msg["From"]
+                    model_data['subject'] = msg["Subject"]
+                    model_data['time'] = msg["Date"]
+
+                    #check if we've processed this email already
+                    mdl_instance = db_collection.find_one(model_data)
+                    if mdl_instance:
+                        continue
                     if msg.is_multipart():
                         for part in msg.walk():
                             content_type = part.get_content_type()
@@ -47,6 +63,7 @@ def searchInventory(subject='Inventory'):
                                         os.mkdir(folder_name)
                                     filepath = Path(folder_name,filename)
                                     ref_summary['folder'] = str(filepath)
+                                    model_data['file_name'] = str(filepath)
                                     with open(filepath, "wb") as fl:
                                         fl.write(part.get_payload(decode=True))
                     else:
@@ -61,7 +78,10 @@ def searchInventory(subject='Inventory'):
                         filepath = Path(folder_name,"index.html")
                         with open(filepath, "wb") as fl:
                             fl.write(body.encode())
-                    summary.append(ref_summary)
+                    model_data = models['inventories'](model_data) #get model schema
+                    new_inv_instance = db_collection.insert_one(model_data) #insert new document
+                    summary.append({**ref_summary, 'id':new_inv_instance.inserted_id})
+
         except Exception as err:
             continue
     M.close()
