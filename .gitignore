@@ -6,6 +6,7 @@ db/data
 data
 */app_venv
 */email_auth.json
+*/__pycache__
 
 
 public/images/products
