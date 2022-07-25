@@ -25,9 +25,11 @@ def upload(data):
         if data.get(_key) or data.get(_key+"s") or data.get(_key+"es"):  #handle plurals
             to_send[key] = data.get(_key) or data.get(_key+"s") or data.get(_key+"es")
     product_resp = uploadDetail(data=to_send)
+    product_resp['quantity'] = data.get('Quantity',0)
     responses['product'] = product_resp
     if data.get('deal'):
         deal_data = {**data.get('deal'), "productId":product_resp['product']["_id"]}
         deal_resp = uploadDeal(deal_data)
+        deal_resp['quantity'] = data.get('Quantity',0)
         responses['deal'] = deal_resp
     return responses
