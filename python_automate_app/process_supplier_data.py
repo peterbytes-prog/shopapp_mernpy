@@ -3,6 +3,7 @@ from extract_supplier_data import extract
 from parse_supplier_data import parse as parseData
 from upload_supplier_data import upload as uploadData
 from create_report import generateReport
+from send_mail import sendEmail
 import pymongo
 from db import connect
 
@@ -23,7 +24,16 @@ for inv in inventory_paths:
         if responses.get('product'):
             responses_summary.append(responses)
             db_collection.update_one({'_id':inv.get('id')},{'$set':{'processed':True}}) #mark inventory document to proccessed
+    #generate pdf
     pdf = generateReport(data = responses_summary, recv =inv)
+
+    #contruct email data
+    sender = 'ross.gallan.jr@gmail.com' #email sender
+    reciever = 'ross.gallan.jr@gmail.com' #email reviever
+    attachments = {'inventory_update.pdf': pdf} #only one attachment as newly created pdf file path
+    subject = body = "Test Inventory Update Report Email" #subjet and body of the email
+
+    sendEmail(sender=sender, reciever=reciever, subject=subject, body=body, attachments=attachments) #send email 
 
 #create report
 #send email report to inventory sender and admin
