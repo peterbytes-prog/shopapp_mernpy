@@ -3,7 +3,10 @@ from pathlib import Path
 import getpass, imaplib, json
 import pymongo
 from db import connect, models
+from logger import getLogger
 
+
+logger = getLogger()
 db_collection = connect()['inventories']
 
 
@@ -18,6 +21,7 @@ def searchInventory(subject='Inventory'):
     try:
         M = imaplib.IMAP4_SSL('imap.gmail.com')
         M.login(creds['email'], creds['password'])
+
     except Exception as err:
         raise err
         return
@@ -35,7 +39,6 @@ def searchInventory(subject='Inventory'):
                     ref_summary['To'] = msg["To"]
                     ref_summary['Subject'] = msg["Subject"]
                     ref_summary['Date'] = msg["Date"]
-
                     model_data['from'] = msg["From"]
                     model_data['subject'] = msg["Subject"]
                     model_data['time'] = msg["Date"]
@@ -51,7 +54,7 @@ def searchInventory(subject='Inventory'):
                             if content_type == 'text/plain' and "attachment" not in content_disposition:
                                 try:
                                     body = part.get_payload(decode=True).decode()
-                                    print(body)
+                                    # print(body)
                                 except:
                                     pass
                             elif 'attachment' in content_disposition:
@@ -69,8 +72,9 @@ def searchInventory(subject='Inventory'):
                     else:
                         content_type = msg.get_content_type()
                         body = msg.get_payload(decode=True)
-                        if content_type == 'text/plain':
-                            print(body.decode())
+                        # if content_type == 'text/plain':
+                        #     print(body.decode())
+                        pass
                     if content_type == "text/html":
                         folder_name = Path("".join(c if c.isalnum() else "_" for c in msg["Subject"]))
                         if not Path.is_dir(folder_name):
@@ -83,6 +87,7 @@ def searchInventory(subject='Inventory'):
                     summary.append({**ref_summary, 'id':new_inv_instance.inserted_id})
 
         except Exception as err:
+            logger.critical(f"{err}")
             continue
     M.close()
     M.logout()

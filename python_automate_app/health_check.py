@@ -58,22 +58,23 @@ def main():
     subject =None
     body = "Please check your system and resolve the issue as soon as possible."
     attachment_path = {}
+    errors = []
     subject = check_cpu()[1]
     if subject:
         message = generate_email(subject=subject,body=body,attachments=attachment_path, sender=sender,reciever=recipient)
-        # print(message)
+        errors.append(subject)
     subject = check_disk()[1]
     if subject:
         message = generate_email(subject=subject,body=body,attachments=attachment_path, sender=sender,reciever=recipient)
-        # print(message)
+        errors.append(subject)
     subject = check_memory()[1]
     if subject:
         message = generate_email(subject=subject,body=body,attachments=attachment_path, sender=sender,reciever=recipient)
-        # print(message)
+        errors.append(subject)
     subject = check_localhost()[1]
     if subject:
         message = generate_email(subject=subject,body=body,attachments=attachment_path, sender=sender,reciever=recipient)
-        # print(message)
-    return
+        errors.append(subject)
+    return errors
 if __name__ == '__main__':
     main()

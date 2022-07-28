@@ -5,8 +5,10 @@ from reportlab.graphics.charts.piecharts import Pie
 from datetime import datetime
 import os
 from pathlib import Path
+from logger import getLogger
 
 
+logger = getLogger()
 secion_headers = lambda txt: Paragraph(f"""<font size=12><b><u>{txt}</u></b></font>""")
 
 secion_subheaders = lambda txt: Paragraph(f"""<para leftIndent=5><font size=10><b><u><i>{txt}</i></u></b></font></para>""")
@@ -42,7 +44,7 @@ def generateReport(data, recv):
         inv_date = datetime.strptime(inv_date, "%a, %d %b %Y %H:%M:%S")
         fl_path = Path(f"./reports/inventories")/format_dtime_to_path(inv_date)
     except Exception as exc: #use current date time
-        print('time to path exception', exc)
+        logger.warning(f'time to path exception {exc}')
         inv_date = datetime.now()
         fl_path = Path(f"./reports/inventories")/format_dtime_to_path(inv_date)
     if not fl_path.exists():

@@ -1,4 +1,7 @@
 import zipfile, pathlib
+from logger import getLogger
+
+logger = getLogger()
 
 def extract(filepath):
     filepath = pathlib.Path(filepath)
@@ -12,9 +15,11 @@ def extract(filepath):
                     contents.append(p)
 
         else:
-            raise ValueError("not zipfile")
+            # raise ValueError("not zipfile")
+            logger.warning("not zipfile")
     else:
-        raise ValueError('invalid zip file path')
+        # raise ValueError('invalid zip file path')
+         logger.warning('invalid zip file path')
     return contents
 
 

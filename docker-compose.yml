@@ -10,6 +10,12 @@ services:
       - ./nodeapp:/app
     links:
       - mongo
+  pythonapp:
+    build:
+      context: ./python_automate_app
+    links:
+      - mongo
+      - nodeapp
   reactapp:
     build:
       context: ./shopapp

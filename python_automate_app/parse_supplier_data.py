@@ -1,5 +1,8 @@
 import os, pathlib, csv
 from process_images import process
+from logger import getLogger
+
+logger = getLogger()
 
 
 def isPromo(data):
@@ -39,5 +42,6 @@ def parse(data):
         summary_csv = summary_csv[0] # use the first inventory file as main inventory summary
         parse_data = parseCsv(summary_csv) #parse and process data and image
     else:
-        raise ValueError("No Summary Csv")
+        # raise ValueError("No Summary Csv")
+        logger.critical("No Summary Csv")
     return parse_data

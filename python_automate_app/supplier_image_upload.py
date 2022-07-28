@@ -17,4 +17,4 @@ def upload(img_path):
 
 if __name__ == '__main__':
     p = input('image path: ')
-    print(upload(p))
+    upload(p)
